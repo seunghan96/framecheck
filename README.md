@@ -125,15 +125,17 @@ python scripts/evaluate.py
 
 ```text
 10-K writers: Judged 1.5
-                     Judged  Misfit  Cause  Placeholder  Invented  Number    Gap  Models
-Plain prompt           17.2     0.4   77.0          8.5       0.9    98.0  101.2      17
-+ Norm card            80.0    15.9    9.7          0.6       0.3    88.8   88.8      17
-+ Style instruction     0.1     0.0    5.3          3.1       2.3    99.8    9.8      17
-FrameCheck              1.0     0.0    0.4          0.2       0.1    99.8    1.1      17
-FrameCheck (style)      0.0     0.0    0.4          2.7       2.3    99.8    4.5      17
+                        Judged  Misfit  Cause  Placeholder  Invented  Number    Gap  Models
+Plain prompt              17.2     0.4   77.0          8.5       0.9    98.0  101.2      17
++ Norm card               80.0    15.9    9.7          0.6       0.3    88.8   88.8      17
++ Style instruction        0.1     0.0    5.3          3.1       2.3    99.8    9.8      17
++ Faithful instruction     0.3     0.0    0.6          0.6       0.6    99.4    2.3      17
+Template                   0.0     0.0    0.6          0.0       0.0   100.0    2.1       1
+FrameCheck                 1.0     0.0    0.4          0.2       0.1    99.8    1.1      17
+FrameCheck (style)         0.0     0.0    0.4          2.7       2.3    99.8    4.5      17
 ```
 
-All values are shares of drafts (%), averaged per model first and then over the 17 models.
+All values are shares of drafts (%), averaged per model first and then over the 17 models. The template needs no model, so it has one row of scores.
 
 | Metric | Meaning | Best |
 |---|---|:---:|

@@ -9,6 +9,8 @@ SUMM = ('Sentence from a company\'s 10-K MD&A section:\n"{sentence}"\n\nSummariz
 # FrameCheck (style): one sentence that replaces retrieval
 STYLE = (" Follow the style of 10-K filings, which usually report a change with its number alone and rarely add "
          "words such as slightly or significantly.")
+# faithful instruction (baseline and FrameCheck (faithful)): add nothing beyond the input
+FAITH = (" Report only what the input gives: do not add a cause for the change or any word that judges how large it is.")
 NOTES = "Notes from the finance team: {notes}\n\n"
 RETRIEVAL_HEADER = "Sentences from other companies' 10-K filings that describe changes of a similar size:\n"
 NORM_WORDS = ["marginal", "slight", "modest", "moderate", "significant", "substantial", "sharp", "dramatic"]

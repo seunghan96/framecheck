@@ -23,7 +23,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from framecheck import UsageNorms  # noqa: E402
-from framecheck.prompts import ASK, STYLE, SUMM, SYSTEM, fact, norm_card, retrieval_block  # noqa: E402
+from framecheck.prompts import ASK, FAITH, STYLE, SUMM, SYSTEM, fact, norm_card, retrieval_block  # noqa: E402
 from framecheck.retrieval import SizeMatchedRetriever  # noqa: E402
 
 N = 4  # drafts per item
@@ -62,6 +62,7 @@ def main():
         return {"p0": lambda: f + ASK,
                 "norms": lambda: card + f + ASK,
                 "style": lambda: f + ASK + STYLE,
+                "faith": lambda: f + ASK + FAITH,
                 "retrieve_nat": lambda: retrieval_block(retriever.retrieve(r.value)) + f + ASK,
                 "summ": lambda: SUMM.format(sentence=r.sentence)}[c]()
 

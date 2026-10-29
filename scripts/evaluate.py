@@ -4,6 +4,8 @@ Rows
   Plain prompt            the main instruction alone
   + Norm card             the instruction with the usage norms of eight common words (prompt baseline)
   + Style instruction     the instruction with the style sentence (prompt baseline)
+  + Faithful instruction  the instruction with "add nothing beyond the input" (prompt baseline)
+  Template                a fixed sentence built from the input fields, no model
   FrameCheck              size-matched retrieval (step 1), then the cause cut and the rule edit (steps 2-3)
   FrameCheck (style)      the style sentence instead of retrieval, then steps 2-3
 
@@ -21,6 +23,7 @@ from framecheck import UsageNorms, cut_cause, edit  # noqa: E402
 from framecheck.metrics import gap, invented, score_draft  # noqa: E402
 
 ROWS = [("Plain prompt", "p0", False), ("+ Norm card", "norms", False), ("+ Style instruction", "style", False),
+        ("+ Faithful instruction", "faith", False), ("Template", "template", False),
         ("FrameCheck", "retrieve_nat", True), ("FrameCheck (style)", "style", True)]
 COLS = {"graded": "Judged", "misfit": "Misfit", "cause": "Cause", "placeholder": "Placeholder",
         "invented": "Invented", "number": "Number"}
@@ -45,6 +48,10 @@ def main():
     drafts = pd.read_json(args.drafts, lines=True)
 
     rows = []
+    for i, r in items.iterrows():  # template baseline: no model
+        t = f"{r['subject']} {'increased' if r['value'] > 0 else 'decreased'} {r['abs']:.1f}% in fiscal {r['year']} compared with fiscal {r['year'] - 1}."
+        sc = score_draft(norms, t, r["abs"], r["direction"]); sc["invented"] = invented(t)
+        rows.append(dict(sc, row="Template", model="template"))
     for name, cond, ours in ROWS:
         for x in drafts[drafts.cond == cond].itertuples():
             r = items.loc[x.id]
