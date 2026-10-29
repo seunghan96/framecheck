@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+data/raw/
+data/pairs*.jsonl
+data/drafts/draft_*.jsonl
+.pytest_cache/
