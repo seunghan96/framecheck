@@ -214,17 +214,6 @@ framecheck/
 
 ---
 
-## 📝 Citation
-
-```bibtex
-@misc{framecheck2026,
-  title  = {Right Numbers, Wrong Story: When LLMs Narrate Financial Changes Beyond Their Inputs},
-  author = {Anonymous},
-  year   = {2026},
-  note   = {Under review}
-}
-```
-
 ## 📄 License
 
 Code is released under the [MIT License](LICENSE). The 10-K text comes from public SEC filings via EDGAR-CORPUS; please also follow the terms of that dataset.
